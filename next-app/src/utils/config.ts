@@ -9,6 +9,7 @@ export const AppConfig = {
         animate: process.env.NEXT_PUBLIC_LOGO_ANIMATE === "true"
     },
     preloader: {
+        dev: process.env.NEXT_PUBLIC_PRELOADER_DEV === "true",
         hints: (process.env.NEXT_PUBLIC_PRELOADER_HINTS || "").split("|").filter(Boolean),
     },
     hero: {
