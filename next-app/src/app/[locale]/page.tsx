@@ -2,8 +2,10 @@ import Section from "@/components/Section";
 import Header from "@/components/Header";
 import { AppConfig } from "@/utils/config";
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations("Hero");
   return (
     <>
       <Header />

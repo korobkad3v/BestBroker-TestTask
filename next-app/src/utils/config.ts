@@ -1,5 +1,3 @@
-import { title } from "process";
-
 export const AppConfig = {
     logo : {
         name: (process.env.NEXT_PUBLIC_LOGO_NAME ?? "").replace(/\\n/g, "\n"),
