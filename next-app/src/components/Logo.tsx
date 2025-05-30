@@ -2,7 +2,7 @@
 import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import Link from "next/link";
-import { LOGO_CONSTANTS } from "@/constants/logo";
+import { AppConfig } from "@/utils/config";
 
 type Props = {
   className?: string;
@@ -13,11 +13,11 @@ type Props = {
 
 export default function Logo({
   className = "",
-  size = LOGO_CONSTANTS.size,
-  showSlogan = LOGO_CONSTANTS.showSlogan,
-  animate = LOGO_CONSTANTS.animate
+  size = AppConfig.logo.size,
+  showSlogan = AppConfig.logo.showSlogan,
+  animate = AppConfig.logo.animate
 }: Props) {
-  const words = LOGO_CONSTANTS.name.split("\n");
+  const words = AppConfig.logo.name.split("\n");
   return (
     <Link href={"/"} className={`${className? className + " ": ""}flex items-start gap-3 font-logo no-underline`}>
       <div className="flex items-center flex-col gap-2 ">
@@ -44,7 +44,7 @@ export default function Logo({
           </div>
         </div>
         {showSlogan && <span className={"text-xs" + 
-          (animate ? " text-transparent bg-gradient-to-r from-foreground/0 via-foreground/90 to-foreground/0 bg-[length:200%_100%] bg-clip-text animate-shine" : "")}>{LOGO_CONSTANTS.slogan}</span>}
+          (animate ? " text-transparent bg-gradient-to-r from-foreground/0 via-foreground/90 to-foreground/0 bg-[length:200%_100%] bg-clip-text animate-shine" : "")}>{AppConfig.logo.slogan}</span>}
       </div>
     </Link>
   );

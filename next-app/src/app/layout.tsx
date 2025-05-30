@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Libre_Caslon_Text } from "next/font/google";
+import Preloader from "@/components/Preloader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonText.variable} antialiased`}
       >
+        <Preloader dev={process.env.NODE_ENV === "development"}/>
         {children}
       </body>
     </html>

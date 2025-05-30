@@ -2,18 +2,18 @@
 "use client";
 import Logo from "./Logo";
 import { useEffect, useState, useRef } from "react";
-import { PRELOADER_CONSTANTS } from "@/constants/preloader";
+import { AppConfig } from "@/utils/config";
 import { clear } from "console";
 import { tr } from "framer-motion/client";
 
 export default function Preloader({
-  dev = PRELOADER_CONSTANTS.dev,
+  dev = true,
 }: {
-  dev?: boolean;
+  dev: boolean;
 }) {
   const [loading, setLoading] = useState(false);
   const [hintIndex, setHintIndex] = useState(0);
-  const hintsRef = useRef(PRELOADER_CONSTANTS.hints);
+  const hintsRef = useRef(AppConfig.preloader.hints);
   const usedIndicesRef = useRef<number[]>([]);
 
   // dev mode
@@ -22,7 +22,7 @@ export default function Preloader({
     setLoading(true);
     const timer = setInterval(() => {
       setLoading(false);
-    }, 10000);
+    }, 5000);
     return () => {
       clearInterval(timer);
     };
@@ -50,7 +50,7 @@ export default function Preloader({
     if (!loading) return;
     const hintTimer = setInterval(() => {
         console.log("change");
-      const availableIndices = PRELOADER_CONSTANTS.hints
+      const availableIndices = AppConfig.preloader.hints
         .map((_, i) => i)
         .filter((i) => !usedIndicesRef.current.includes(i));
 
@@ -61,7 +61,7 @@ export default function Preloader({
       const remaining =
         availableIndices.length > 0
           ? availableIndices
-          : PRELOADER_CONSTANTS.hints.map((_, i) => i);
+          : AppConfig.preloader.hints.map((_, i) => i);
       const nextIndex = remaining[Math.floor(Math.random() * remaining.length)];
 
       usedIndicesRef.current.push(nextIndex);
@@ -75,7 +75,7 @@ export default function Preloader({
 
   useEffect(() => {
     if (hintsRef.current.length < 1) {
-      hintsRef.current = [...PRELOADER_CONSTANTS.hints];
+      hintsRef.current = [...AppConfig.preloader.hints];
     }
   }, [hintIndex]);
 
