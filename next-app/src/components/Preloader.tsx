@@ -4,29 +4,80 @@ import Logo from "./Logo";
 import { useEffect, useState, useRef } from "react";
 import { PRELOADER_CONSTANTS } from "@/constants/preloader";
 import { clear } from "console";
+import { tr } from "framer-motion/client";
 
-export default function Preloader({ dev = true }: { dev?: boolean }) {
-  const [loading, setLoading] = useState(true);
+export default function Preloader({
+  dev = PRELOADER_CONSTANTS.dev,
+}: {
+  dev?: boolean;
+}) {
+  const [loading, setLoading] = useState(false);
   const [hintIndex, setHintIndex] = useState(0);
-  const lastIndexRef = useRef(0);
-  useEffect(() => {
-    const hintTimer = setTimeout(() => {
-      let nextIndex;
-      do {
-        nextIndex = Math.floor(Math.random() * PRELOADER_CONSTANTS.hints.length);
-      } while (nextIndex === lastIndexRef.current);
+  const hintsRef = useRef(PRELOADER_CONSTANTS.hints);
+  const usedIndicesRef = useRef<number[]>([]);
 
-      lastIndexRef.current = nextIndex;
-      setHintIndex(nextIndex);
-    }, 2500);
-    const timer = setTimeout(() => {
+  // dev mode
+  useEffect(() => {
+    if (!dev) return;
+    setLoading(true);
+    const timer = setInterval(() => {
       setLoading(false);
     }, 10000);
     return () => {
-      clearTimeout(hintTimer);
-      clearTimeout(timer);
+      clearInterval(timer);
     };
   }, []);
+
+  // prod mode
+  useEffect(() => {
+    const alreadyShown = sessionStorage.getItem("preloaderShown");
+    if (alreadyShown || dev) return;
+
+    setLoading(true);
+    const onLoad = () => {
+      sessionStorage.setItem("preloaderShown", "true");
+      setLoading(false);
+    };
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad);
+      return () => window.removeEventListener("load", onLoad);
+    }
+  });
+
+  useEffect(() => {
+    if (!loading) return;
+    const hintTimer = setInterval(() => {
+        console.log("change");
+      const availableIndices = PRELOADER_CONSTANTS.hints
+        .map((_, i) => i)
+        .filter((i) => !usedIndicesRef.current.includes(i));
+
+      if (availableIndices.length === 0) {
+        usedIndicesRef.current = [];
+      }
+
+      const remaining =
+        availableIndices.length > 0
+          ? availableIndices
+          : PRELOADER_CONSTANTS.hints.map((_, i) => i);
+      const nextIndex = remaining[Math.floor(Math.random() * remaining.length)];
+
+      usedIndicesRef.current.push(nextIndex);
+      setHintIndex(nextIndex);
+    }, 2500);
+
+    return () => {
+      clearTimeout(hintTimer);
+    };
+  }, [loading]);
+
+  useEffect(() => {
+    if (hintsRef.current.length < 1) {
+      hintsRef.current = [...PRELOADER_CONSTANTS.hints];
+    }
+  }, [hintIndex]);
 
   if (!loading) return null;
   return (
@@ -34,7 +85,7 @@ export default function Preloader({ dev = true }: { dev?: boolean }) {
       <Logo animate={true} size={64} showSlogan={true} />
       <div className="flex flex-col items-center justify-center">
         <span>Did you know?</span>
-        <span>{PRELOADER_CONSTANTS.hints[hintIndex]}</span>
+        <span>{hintsRef.current[hintIndex]}</span>
       </div>
     </div>
   );
