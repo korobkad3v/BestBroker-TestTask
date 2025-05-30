@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Libre_Caslon_Text } from "next/font/google";
+import Preloader from "@/components/Preloader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +12,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const libreCaslonText = Libre_Caslon_Text({
+  variable: "--font-libre-caslon-text",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,8 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonText.variable} antialiased`}
       >
+        <Preloader dev={process.env.NODE_ENV === "development"}/>
         {children}
       </body>
     </html>
