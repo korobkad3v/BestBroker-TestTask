@@ -4,38 +4,20 @@
 *.log
 *.DS_Store
 node_modules/
-__pycache__/
-*.py[cod]
-.Python
-*.sqlite3
 
 # --- Frontend (Next.js) ---
-client/.next/
-client/node_modules/
-client/dist/
-client/out/
-client/.turbo/
-client/.env.local
-client/.env.development.local
-client/.env.production.local
+next-app/.next/
+next-app/node_modules/
+next-app/dist/
+next-app/out/
+next-app/.turbo/
+next-app/.env.development.local
+next-app/.env.production.local
 
 # VSCode and IDEs
-client/.vscode/
-client/.idea/
+next-app/.vscode/
+next-app/.idea/
 
-# --- Backend (Python FastAPI) ---
-server/__pycache__/
-server/*.py[cod]
-server/venv/
-server/env/
-server/.env
-server/.vscode/
-server/.idea/
-
-# --- Docker ---
-*.pid
-*.sock
-docker-compose.override.yml
 
 # --- OS Specific ---
 Thumbs.db
