@@ -34,7 +34,7 @@ export default function RootLayout({
     <>
       <div
         className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonText.variable} antialiased`}>
-        <Preloader dev={AppConfig.preloader.dev}/>
+        
         {children}
       </div>
     </>
