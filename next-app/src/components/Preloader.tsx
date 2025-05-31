@@ -12,8 +12,9 @@ export default function Preloader({
 }) {
   const  t  = useTranslations("Preloader");
   const [loading, setLoading] = useState(false);
-  const [hintIndex, setHintIndex] = useState(0);  
   const hintsRef = useRef(t.raw("hints"));
+  const [hintIndex, setHintIndex] = useState(Math.floor(Math.random() * hintsRef.current.length));  
+  
   
   const usedIndicesRef = useRef<number[]>([]);
 
@@ -82,7 +83,7 @@ export default function Preloader({
   if (!loading) return null;
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-50 gap-12 bg-background">
-      <Logo animate={AppConfig.preloader.logo.animate} size={64} showSlogan={AppConfig.preloader.logo.showSlogan} />
+      <Logo animate={AppConfig.preloader.logo.animate} size={AppConfig.logo.size} showSlogan={AppConfig.preloader.logo.showSlogan} />
       <div className="flex flex-col items-center justify-center">
         <span>Did you know?</span>
         <span>{hintsRef.current[hintIndex]}</span>
