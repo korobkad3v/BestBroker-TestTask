@@ -4,7 +4,7 @@ import logo from "@/assets/logo.svg";
 import Link from "next/link";
 import { AppConfig } from "@/utils/config";
 import { useTranslations } from "next-intl";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 type Props = {
   className?: string;
   size?: number;
@@ -46,12 +46,7 @@ export default function Logo({
         </div>
         {showSlogan && (
           <span
-            className={
-              "text-xs" +
-              (animate
-                ? " text-transparent bg-gradient-to-r from-foreground/0 via-foreground/90 to-foreground/0 bg-[length:200%_100%] bg-clip-text animate-shine"
-                : "")
-            }
+            className={cn("text-xs", animate && "text-transparent bg-gradient-to-r from-foreground/0 via-foreground/90 to-foreground/0 bg-[length:200%_100%] bg-clip-text animate-shine")}
           >
             {t("slogan")}
           </span>
