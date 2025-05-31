@@ -23,7 +23,7 @@ export default function Preloader({ dev = true }: { dev: boolean }) {
     const timer = setInterval(() => {
       setLoading(false);
       document.body.style.overflow = "";
-    }, 9999999999);
+    }, 5000);
     return () => {
       document.body.style.overflow = "";
       clearInterval(timer);

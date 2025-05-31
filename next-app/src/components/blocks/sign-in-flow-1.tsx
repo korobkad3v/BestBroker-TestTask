@@ -446,8 +446,8 @@ export function MiniNavbar() {
                      transition-all duration-300 ease-out
                      group-hover:opacity-60 group-hover:blur-xl group-hover:-m-3"
       ></div>
-      <button className="relative z-10 px-4 py-2 sm:px-3 text-xs sm:text-sm font-semibold text-black bg-gradient-to-br from-gray-100 to-gray-300 rounded-full hover:from-gray-200 hover:to-gray-400 transition-all duration-200 w-full sm:w-auto">
-        Signup
+      <button className="cursor-pointer relative z-10 px-4 py-2 sm:px-3 text-xs sm:text-sm font-semibold text-black bg-gradient-to-br from-gray-100 to-gray-300 rounded-full hover:from-gray-200 hover:to-gray-400 transition-all duration-200 w-full sm:w-auto">
+        {t("miniNav.btn")}
       </button>
     </div>
   );
@@ -476,7 +476,6 @@ export function MiniNavbar() {
         </nav>
 
         <div className="hidden sm:flex items-center gap-2 sm:gap-3">
-          {loginButtonElement}
           {signupButtonElement}
         </div>
 
@@ -539,7 +538,6 @@ export function MiniNavbar() {
           ))}
         </nav>
         <div className="flex flex-col items-center space-y-4 mt-4 w-full">
-          {loginButtonElement}
           {signupButtonElement}
         </div>
       </div>

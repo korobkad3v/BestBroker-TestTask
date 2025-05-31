@@ -27,7 +27,8 @@
                     "href": "#3",
                     "label": "Contact"
                 }
-            ]
+            ],
+            "btn": "Free Consultation"
         }
     },
 
@@ -35,7 +36,7 @@
         "badge": "Real Estate Company",
         "title1": "Your dream home in",
         "title2": "Miami starts here",
-        "subtitle": "Luxury properties. Smart investments. Local expertise you can trust."
+        "subtitle": "Luxury properties. Smart investments.\n Local expertise you can trust."
     },
 
     "Footer": {
