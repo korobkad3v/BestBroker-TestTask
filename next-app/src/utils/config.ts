@@ -10,8 +10,13 @@ export const AppConfig = {
         dev: process.env.NEXT_PUBLIC_PRELOADER_DEV === "true",
         // logo in preloader
         logo: {
+            size: 64,
             showSlogan: true,
             animate: true
         }
-    },  
+    },
+    
+    heroGeometric: {
+        delay: 0,
+    }
 }

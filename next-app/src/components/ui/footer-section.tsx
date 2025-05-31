@@ -4,7 +4,6 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import {
   Tooltip,
@@ -14,7 +13,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react"
 
-function Footerdemo() {
+export default function Footer() {
   const [isDarkMode, setIsDarkMode] = React.useState(true)
   const [isChatOpen, setIsChatOpen] = React.useState(false)
 
@@ -137,7 +136,7 @@ function Footerdemo() {
                 </Tooltip>
               </TooltipProvider>
             </div>
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <Sun className="h-4 w-4" />
               <Switch
                 id="dark-mode"
@@ -148,7 +147,7 @@ function Footerdemo() {
               <Label htmlFor="dark-mode" className="sr-only">
                 Toggle dark mode
               </Label>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
@@ -171,5 +170,3 @@ function Footerdemo() {
     </footer>
   )
 }
-
-export { Footerdemo }

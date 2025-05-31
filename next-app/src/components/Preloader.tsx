@@ -82,7 +82,7 @@ export default function Preloader({
 
   if (!loading) return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-50 gap-12 bg-background">
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-9999 gap-12 bg-background">
       <Logo animate={AppConfig.preloader.logo.animate} size={AppConfig.logo.size} showSlogan={AppConfig.preloader.logo.showSlogan} />
       <div className="flex flex-col items-center justify-center">
         <span>Did you know?</span>
