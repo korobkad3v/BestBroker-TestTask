@@ -1,0 +1,41 @@
+{
+    "Logo": {
+        "name": "Best\nBroker",
+        "slogan": "Excellence in Real Estate"
+    },
+
+    "Header": {
+        "miniNav": {
+            "links": 
+            [
+                {
+                    "href": "#1",
+                    "label": "Home"
+                },
+                {
+                    "href": "#2",
+                    "label": "About"
+                },
+                {
+                    "href": "#3",
+                    "label": "Contact"
+                }
+            ]
+        }
+    },
+
+    "Preloader": {
+        "hints": [
+            "We are best in real estate",
+            "Our app runs on 100% renewable energy!",
+            "We are a green company"
+        ]
+    }, 
+
+    "Hero": {
+        "badge": "Real Estate Company",
+        "title1": "Your dream home in",
+        "title2": "Miami starts here",
+        "subtitle": "Luxury properties. Smart investments. Local expertise you can trust."
+    }
+}
