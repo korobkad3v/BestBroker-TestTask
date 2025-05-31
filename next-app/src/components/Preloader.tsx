@@ -23,7 +23,7 @@ export default function Preloader({ dev = true }: { dev: boolean }) {
     const timer = setInterval(() => {
       setLoading(false);
       document.body.style.overflow = "";
-    }, 5000);
+    }, 9999999999);
     return () => {
       document.body.style.overflow = "";
       clearInterval(timer);
@@ -87,15 +87,16 @@ export default function Preloader({ dev = true }: { dev: boolean }) {
 
   if (!loading) return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-9999 gap-12 bg-background">
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-9999 bg-background">
       <Logo
+        className="flex items-center justify-center pointer-events-none"
         animate={AppConfig.preloader.logo.animate}
-        size={AppConfig.logo.size}
+        size={AppConfig.preloader.logo.size}
         showSlogan={AppConfig.preloader.logo.showSlogan}
       />
-      <div className="flex flex-col items-center justify-center">
-        <span>Did you know?</span>
-        <span>{hintsRef.current[hintIndex]}</span>
+      <div className="flex flex-col gap-1.5 absolute bottom-32 left-1/2 -translate-x-1/2 text-center">
+        <span className="font-semibold">Why Choose Best Broker?</span>
+        <span className="whitespace-pre-line">{hintsRef.current[hintIndex]}</span>
       </div>
     </div>
   );
