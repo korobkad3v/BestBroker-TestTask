@@ -5,38 +5,39 @@ import { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { AppConfig } from "@/utils/config";
 
-export default function Preloader({
-  dev = true,
-}: {
-  dev: boolean;
-}) {
-  const  t  = useTranslations("Preloader");
+export default function Preloader({ dev = true }: { dev: boolean }) {
+  const t = useTranslations("Preloader");
   const [loading, setLoading] = useState(false);
   const hintsRef = useRef(t.raw("hints"));
-  const [hintIndex, setHintIndex] = useState(Math.floor(Math.random() * hintsRef.current.length));  
-  
-  
+  const [hintIndex, setHintIndex] = useState(
+    Math.floor(Math.random() * hintsRef.current.length)
+  );
+
   const usedIndicesRef = useRef<number[]>([]);
 
   // dev mode
-  useEffect(() => {   
+  useEffect(() => {
     if (!dev) return;
     setLoading(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     const timer = setInterval(() => {
       setLoading(false);
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }, 5000);
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
       clearInterval(timer);
     };
   }, []);
 
   // prod mode
   useEffect(() => {
-    const alreadyShown = sessionStorage.getItem("preloaderShown");
-    if (alreadyShown || dev) return;
+    if (dev) return;
+
+    // const alreadyShown = sessionStorage.getItem("preloaderShown");
+    // if (alreadyShown) {
+    //   return;
+    // }
 
     setLoading(true);
     const onLoad = () => {
@@ -49,12 +50,13 @@ export default function Preloader({
       window.addEventListener("load", onLoad);
       return () => window.removeEventListener("load", onLoad);
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (!loading) return;
     const hintTimer = setInterval(() => {
-      const availableIndices: string[] = t.raw("hints")
+      const availableIndices: string[] = t
+        .raw("hints")
         .map((_: any, i: any) => i)
         .filter((i: number) => !usedIndicesRef.current.includes(i));
 
@@ -73,7 +75,7 @@ export default function Preloader({
     }, 2500);
 
     return () => {
-      clearTimeout(hintTimer);
+      clearInterval(hintTimer);
     };
   }, [loading]);
 
@@ -86,7 +88,11 @@ export default function Preloader({
   if (!loading) return null;
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-9999 gap-12 bg-background">
-      <Logo animate={AppConfig.preloader.logo.animate} size={AppConfig.logo.size} showSlogan={AppConfig.preloader.logo.showSlogan} />
+      <Logo
+        animate={AppConfig.preloader.logo.animate}
+        size={AppConfig.logo.size}
+        showSlogan={AppConfig.preloader.logo.showSlogan}
+      />
       <div className="flex flex-col items-center justify-center">
         <span>Did you know?</span>
         <span>{hintsRef.current[hintIndex]}</span>
