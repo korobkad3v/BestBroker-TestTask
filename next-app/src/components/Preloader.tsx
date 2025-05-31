@@ -19,13 +19,16 @@ export default function Preloader({
   const usedIndicesRef = useRef<number[]>([]);
 
   // dev mode
-  useEffect(() => {
+  useEffect(() => {   
     if (!dev) return;
     setLoading(true);
+    document.body.style.overflow = 'hidden';
     const timer = setInterval(() => {
       setLoading(false);
+      document.body.style.overflow = '';
     }, 5000);
     return () => {
+      document.body.style.overflow = '';
       clearInterval(timer);
     };
   }, []);
