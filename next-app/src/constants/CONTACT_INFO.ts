@@ -1,8 +1,8 @@
 export const CONTACT_INFO = {
-    phoneNumber: "",
-    email: "",
+    phoneNumber: "(123) 456-7890",
+    email: "hello@example.com",
     mapsURL: "",
-    address: "",
+    address: "123 Innovation\nStreet Tech City, TC 12345",
     instagram: "",
     facebook: ""
 }

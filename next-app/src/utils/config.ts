@@ -1,9 +1,9 @@
 export const AppConfig = {
     // global logo settings
     logo : {
-        size: Number(process.env.NEXT_PUBLIC_LOGO_SIZE),
-        showSlogan: process.env.NEXT_PUBLIC_LOGO_SHOW_SLOGAN === "true",
-        animate: process.env.NEXT_PUBLIC_LOGO_ANIMATE === "true"
+        size: 40,
+        showSlogan: false,
+        animate: false
     },
 
     preloader: {
@@ -17,6 +17,10 @@ export const AppConfig = {
     },
     
     heroGeometric: {
-        delay: 0,
+        delay: 0
     }
 }
+
+AppConfig.heroGeometric = {
+    delay: 0 + (AppConfig.preloader.dev ? 5 : 0),
+};
