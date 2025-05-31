@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Libre_Caslon_Text } from "next/font/google";
+import { Geist, Geist_Mono, Libre_Caslon_Text } from "next/font/google";
+import { AppConfig } from "@/utils/config";
 import Preloader from "@/components/Preloader";
 import "./globals.css";
 
@@ -31,13 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonText.variable} antialiased`}
-      >
-        <Preloader dev={process.env.NODE_ENV === "development"}/>
+    <>
+      <div
+        className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonText.variable} antialiased`}>
+        
         {children}
-      </body>
-    </html>
+      </div>
+    </>
+
   );
 }

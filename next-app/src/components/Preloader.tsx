@@ -2,18 +2,20 @@
 "use client";
 import Logo from "./Logo";
 import { useEffect, useState, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { AppConfig } from "@/utils/config";
-import { clear } from "console";
-import { tr } from "framer-motion/client";
 
 export default function Preloader({
   dev = true,
 }: {
   dev: boolean;
 }) {
+  const  t  = useTranslations("Preloader");
   const [loading, setLoading] = useState(false);
-  const [hintIndex, setHintIndex] = useState(0);
-  const hintsRef = useRef(AppConfig.preloader.hints);
+  const hintsRef = useRef(t.raw("hints"));
+  const [hintIndex, setHintIndex] = useState(Math.floor(Math.random() * hintsRef.current.length));  
+  
+  
   const usedIndicesRef = useRef<number[]>([]);
 
   // dev mode
@@ -49,10 +51,9 @@ export default function Preloader({
   useEffect(() => {
     if (!loading) return;
     const hintTimer = setInterval(() => {
-        console.log("change");
-      const availableIndices = AppConfig.preloader.hints
-        .map((_, i) => i)
-        .filter((i) => !usedIndicesRef.current.includes(i));
+      const availableIndices: string[] = t.raw("hints")
+        .map((_: any, i: any) => i)
+        .filter((i: number) => !usedIndicesRef.current.includes(i));
 
       if (availableIndices.length === 0) {
         usedIndicesRef.current = [];
@@ -61,7 +62,7 @@ export default function Preloader({
       const remaining =
         availableIndices.length > 0
           ? availableIndices
-          : AppConfig.preloader.hints.map((_, i) => i);
+          : t.raw("hints").map((_: any, i: any) => i);
       const nextIndex = remaining[Math.floor(Math.random() * remaining.length)];
 
       usedIndicesRef.current.push(nextIndex);
@@ -75,14 +76,14 @@ export default function Preloader({
 
   useEffect(() => {
     if (hintsRef.current.length < 1) {
-      hintsRef.current = [...AppConfig.preloader.hints];
+      hintsRef.current = t("hints");
     }
   }, [hintIndex]);
 
   if (!loading) return null;
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-50 gap-12 bg-background">
-      <Logo animate={true} size={64} showSlogan={true} />
+      <Logo animate={AppConfig.preloader.logo.animate} size={AppConfig.logo.size} showSlogan={AppConfig.preloader.logo.showSlogan} />
       <div className="flex flex-col items-center justify-center">
         <span>Did you know?</span>
         <span>{hintsRef.current[hintIndex]}</span>
