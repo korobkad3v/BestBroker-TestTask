@@ -9,8 +9,6 @@ export default function Home() {
   return (
     <>
       <Section className="relative overflow-hidden flex items-center justify-center">
-        {/* Bg layer, cause no opacity property for background */}
-        <div className="absolute inset-0 bg-intro-section bg-cover bg-center before:absolute before:inset-0 before:bg-black before:opacity-65"></div>
         {/* Content */}
         <HeroGeometric
           badge={t("badge")}

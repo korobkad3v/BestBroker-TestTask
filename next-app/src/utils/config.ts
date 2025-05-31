@@ -17,6 +17,10 @@ export const AppConfig = {
     },
     
     heroGeometric: {
-        delay: 0,
+        delay: 0
     }
 }
+
+AppConfig.heroGeometric = {
+    delay: 0 + (AppConfig.preloader.dev ? 5 : 0),
+};
