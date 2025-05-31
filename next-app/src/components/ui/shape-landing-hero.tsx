@@ -3,7 +3,8 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Circle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { AppConfig } from "@/utils/config";
+import { cn } from "@/utils/utils";
 
 
 function ElegantShape({
@@ -90,7 +91,7 @@ function HeroGeometric({
             y: 0,
             transition: {
                 duration: 1,
-                delay: 0.5 + i * 0.2 + 5, // +5     to refactor
+                delay: 0.5 + i * 0.2 + (AppConfig.preloader.dev ? 5 : 0),
                 ease: [0.25, 0.4, 0.25, 1],
             },
         }),
@@ -102,7 +103,7 @@ function HeroGeometric({
 
             <div className="absolute inset-0 overflow-hidden">
                 <ElegantShape
-                    delay={0.3}
+                    delay={0.3 + (AppConfig.preloader.dev ? 5 : 0)}
                     width={600}
                     height={140}
                     rotate={12}
@@ -111,7 +112,7 @@ function HeroGeometric({
                 />
 
                 <ElegantShape
-                    delay={0.5}
+                    delay={0.5 + (AppConfig.preloader.dev ? 5 : 0)}
                     width={500}
                     height={120}
                     rotate={-15}
@@ -120,7 +121,7 @@ function HeroGeometric({
                 />
 
                 <ElegantShape
-                    delay={0.4}
+                    delay={0.4 + (AppConfig.preloader.dev ? 5 : 0)}
                     width={300}
                     height={80}
                     rotate={-8}
@@ -129,7 +130,7 @@ function HeroGeometric({
                 />
 
                 <ElegantShape
-                    delay={0.6}
+                    delay={0.6 + (AppConfig.preloader.dev ? 5 : 0)}
                     width={200}
                     height={60}
                     rotate={20}
@@ -138,7 +139,7 @@ function HeroGeometric({
                 />
 
                 <ElegantShape
-                    delay={0.7}
+                    delay={0.7 + (AppConfig.preloader.dev ? 5 : 0)}
                     width={150}
                     height={40}
                     rotate={-25}
