@@ -93,6 +93,9 @@
                     "srOnlyText": "LinkedIn"
                 }
             }
+        },
+        "subFooter": {
+            "copyright": "© 2025 Best Broker. All rights reserved."
         }
     }
 }
