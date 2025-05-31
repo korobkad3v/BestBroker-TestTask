@@ -2,6 +2,8 @@ import Section from "@/components/Section";
 import Header from "@/components/HeaderWrapper";
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import { useTranslations } from "next-intl";
+import { TestimonialsVariant } from "@/components/Testimonials";
+
 
 export default function Home() {  
 
@@ -17,6 +19,7 @@ export default function Home() {
           subtitle={t("subtitle")}
         />
       </Section>
+      <TestimonialsVariant />
     </>
   );
 }
