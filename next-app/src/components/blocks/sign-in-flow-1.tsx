@@ -10,6 +10,11 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 
 import * as THREE from "three";
 
+type NavLinkData = {
+  label: string;
+  href: string;
+}
+
 type Uniforms = {
   [key: string]: {
     value: number[] | number[][] | number;
@@ -465,7 +470,7 @@ export function MiniNavbar() {
         </div>
 
         <nav className="hidden sm:flex items-center space-x-4 sm:space-x-6 text-sm">
-          {navLinksData.map((link) => (
+          {navLinksData.map((link : NavLinkData) => (
             <AnimatedNavLink key={link.href} href={link.href}>
               {link.label}
             </AnimatedNavLink>
@@ -525,7 +530,7 @@ export function MiniNavbar() {
                        }`}
       >
         <nav className="flex flex-col items-center space-y-4 text-base w-full">
-          {navLinksData.map((link) => (
+          {navLinksData.map((link:NavLinkData) => (
             <a
               key={link.href}
               href={link.href}
