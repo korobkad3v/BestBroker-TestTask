@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { AppConfig } from "@/utils/config";
 import HeaderWrapper from "@/components/HeaderWrapper";
 import Footer from "@/components/ui/footer-section";
 import Preloader from "@/components/Preloader";
@@ -23,7 +24,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <Preloader dev={true} />
+          <Preloader dev={AppConfig.preloader.dev} />
           <HeaderWrapper />
           {children}
           <Footer />
